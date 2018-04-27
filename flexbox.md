@@ -3,7 +3,9 @@
 ## Links
 
 [W3C Flexbox Specification](https://www.w3.org/TR/css-flexbox-1/)
+
 [CSS Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
 [W3 Schoole Flexbox Guide](https://www.w3schools.com/css/css3_flexbox.asp)
 
 
