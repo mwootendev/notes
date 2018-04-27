@@ -3,6 +3,8 @@
 ## Links
 
 [W3C Flexbox Specification](https://www.w3.org/TR/css-flexbox-1/)
+[CSS Tricks Flexbox Guide](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+[W3 Schoole Flexbox Guide](https://www.w3schools.com/css/css3_flexbox.asp)
 
 
 ## Container
@@ -113,14 +115,23 @@ TODO
 
 TODO
 
-| Property | Description                                                                          |
-| -------- | ------------------------------------------------------------------------------------ |
-| `#`      |  |
-| `auto`   |  |
+| Property      | Description                                                                          |
+| ------------- | ------------------------------------------------------------------------------------ |
+| `#`           |  |
+| `auto`        |  |
+| `main-size`   |  |
+| `content`     |  |
+| `max-content` |  |
+| `min-content` |  |
+| `fit-content` |  |
 
 ### flex
 
-TODO
+Shorthand for specifying `flex-grow`, `flex-shrink`, and `flex-basis`.
+
+``` css
+flex: 2 1 auto;
+```
 
 ### `align-self`
 
