@@ -1,5 +1,10 @@
 # CSS Flexbox
 
+## Links
+
+[W3C Flexbox Specification](https://www.w3.org/TR/css-flexbox-1/)
+
+
 ## Container
 
 ### `display`
@@ -31,6 +36,15 @@ Specifies how the contents of the flexbox can wrap.
 | `wrap`         |  |
 | `nowrap`       |  |
 | `wrap-reverse` |  |
+
+### `flex-flow`
+
+Shorthand for specifying `flex-direction` and `flex-wrap`.
+
+``` css
+flex-flow: column nowrap;
+```
+
 
 ### `justify-content`
 
