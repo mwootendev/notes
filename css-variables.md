@@ -33,3 +33,13 @@ The general for for the `var()` function is `var(<custom property name>[, <defau
 background-color: var(--theme-primary-color, #FFFFFF);
 color: var(--theme-secondary-color, #000000);
 ```
+
+The `var()` function must also replace an entire CSS token, for instance `width: var(--header-width)px;` is not valid. The unit must either be included in the custom property or `calc()` can be used to convert the unit, e.g. `width: calc(var(--header-width) * 1px);`.
+
+`var()` functions themselves can be used as fallback values, allowing for different levels of configuration. For instance, if a specific component does not have a custom property assigned, it could try to fall back to a more generic theme custom property.
+
+```css
+background-color: var(--my-component-bg-color, var(--theme-background-color, white));
+```
+
+
