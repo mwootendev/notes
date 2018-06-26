@@ -82,10 +82,13 @@ function ClassDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
 }
 ```
 
+### Method Decorators
 
-### Static Method Decorators
+Applied to the property descriptor of a method. The method declaration can be replaced by returning a new property descriptor. 
 
-Applied to the property descriptor of a method. The method declaration can be replaced by returning a new property descriptor. The target of the decorator will be the constructor function of the class defining the static method.
+#### Static Methods
+
+The target of the decorator will be the constructor function of the class defining the static method.
 
 ```ts
 function StaticMethodDecorator(constructor: Function, propertyKey: string, property: PropertyDescriptor) {
@@ -93,13 +96,36 @@ function StaticMethodDecorator(constructor: Function, propertyKey: string, prope
 }
 ```
 
-### Instance Method Decorators
+#### Instance Methods
 
-Applied to the property descriptor of a method. The method declaration can be replaced by returning a new property descriptor. The target of the decorator will be the Object prototype of the method's instance.
+The target of the decorator will be the Object prototype of the method's instance.
+
+```ts
+function InstanceMethodDecorator(prototype: Object, propertyKey: string, property: PropertyDescriptor) {
+  
+}
+```
+
+### Accessor Decorators
+
+Must be applied to either the `get` or `set`, but cannot be applied to both. The decorator should be applied to the whichever accessor is applied first.
+
+#### Static Accessors
+
+The target of the decorator will be the constructor function of the class defining the static method.
+
+```ts
+function StaticAccessorDecorator(constructor: Function, propertyKey: string, property: PropertyDescriptor) {
+  
+}
+```
+
+#### Instance Accessors
+
+The target of the decorator will be the Object prototype of the method's instance.
 
 ```ts
 function StaticMethodDecorator(prototype: Object, propertyKey: string, property: PropertyDescriptor) {
   
 }
 ```
-
