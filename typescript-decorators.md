@@ -61,3 +61,45 @@ function PropertyDecorator(target, propertyKey: string, descriptor: PropertyDesc
 
 }
 ```
+
+### Class Decorators
+
+Declared on a class itself. The decorator function is applied to the constructor, and it can be used to override the class declaration. A class decorator receives a single parameter, which is the constructor of the class. 
+
+```ts
+function ClassDecorator(constructor: Function) {
+  // Do something with constructor
+}
+```
+
+If the decorator function returns a Function or another class, that will be used to override the class being decoratored.
+
+```ts
+function ClassDecorator<T extends {new(...args:any[]):{}}>(constructor:T) {
+    return class extends constructor {
+        // Update class with additional properties, etc.
+    }
+}
+```
+
+
+### Static Method Decorators
+
+Applied to the property descriptor of a method. The method declaration can be replaced by returning a new property descriptor. The target of the decorator will be the constructor function of the class defining the static method.
+
+```ts
+function StaticMethodDecorator(constructor: Function, propertyKey: string, property: PropertyDescriptor) {
+  
+}
+```
+
+### Instance Method Decorators
+
+Applied to the property descriptor of a method. The method declaration can be replaced by returning a new property descriptor. The target of the decorator will be the Object prototype of the method's instance.
+
+```ts
+function StaticMethodDecorator(prototype: Object, propertyKey: string, property: PropertyDescriptor) {
+  
+}
+```
+
