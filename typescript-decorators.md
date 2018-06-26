@@ -129,3 +129,39 @@ function StaticMethodDecorator(prototype: Object, propertyKey: string, property:
   
 }
 ```
+
+### Property Decorators
+
+Declared before class properties (fields). The decorator will receive the name of the field, but not a property descriptor. Property decorators can only be used to store metadata about a property, but cannot make any changes. Another library, such as reflect-metadata, can be used to store metadata about the property for use by other functions or decorators.
+
+#### Static Properties
+
+The target of the decorator will be the constructor of the class declaring the static property.
+
+```ts
+function StaticPropertyDecorator(constructor: Function, propertyKey: string) {
+  // Record metadata about property
+}
+```
+
+#### Instance Properties
+
+The target of the decorator will be the prototype of the Object declaring the property.
+
+```ts
+function InstancePropertyDecorator(prototype: Object, propertyKey: string) {
+  // Record metadata about property
+}
+```
+
+#### Saving Property Metadata
+
+```ts
+import 'reflect-metadata';
+
+const PROPERTY_METADATA = Symbol('PropertyName');
+
+function PropertyDecorator(construcorOrPrototype: Function | Object, propertyKey: string) {
+  Reflect.metadata(PROPERTY_METADATA, propertyKey);
+}
+```
