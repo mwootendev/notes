@@ -14,7 +14,7 @@ that JSON documents adhere to the schema. JSON schema documents use the MIME-Typ
 ## JSON Schema Document
 
 JSON documents can reference a schema by including a `$schema` property in the document. The `$schema` property should 
-reference the JSON schema that the document adheres to. The JSON schema can be referenced locally, or using an HTTP URL. 
+reference the JSON schema that the document adheres to. The JSON schema can be referenced locally, or using a URI. A JSON schema document should provide its own `$id` URI to uniquely reference the schema being declared.
 
 ```js
 { 
@@ -24,7 +24,24 @@ reference the JSON schema that the document adheres to. The JSON schema can be r
 
 ```js
 {
-  "$schema": "http://json-schema.org/draft-07/schema"
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "http://www.example.com/example-schema
+}
+```
+
+JSON schema documents are composed of properties representing assertions and annotations. Assertion properties, such as type, 
+resolve to a boolean condition that can be used for validation. Annotation properties, such as title, are used to provide
+information to the users of the schema.
+
+The root of the JSON schema document should include an `$id` 
+
+### Specifying a Schema Name
+
+Individual JSON schema levels can be given a name using the `title` property. 
+
+```js
+{
+  "title": "Example"
 }
 ```
 
