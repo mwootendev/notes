@@ -57,7 +57,7 @@ function DecoratorName(arg1, arg2) {
 Property decorators take the target (class containing the property), the propery key, and the property descriptor.
 
 ```ts
-function PropertyDecorator(target, propertyKey: string, descriptor: PropertyDescriptor) {
+function PropertyDecorator(target, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
 
 }
 ```
@@ -91,7 +91,7 @@ Applied to the property descriptor of a method. The method declaration can be re
 The target of the decorator will be the constructor function of the class defining the static method.
 
 ```ts
-function StaticMethodDecorator(constructor: Function, propertyKey: string, property: PropertyDescriptor) {
+function StaticMethodDecorator(constructor: Function, propertyKey: string | symbol, property: PropertyDescriptor) {
   
 }
 ```
@@ -101,7 +101,7 @@ function StaticMethodDecorator(constructor: Function, propertyKey: string, prope
 The target of the decorator will be the Object prototype of the method's instance.
 
 ```ts
-function InstanceMethodDecorator(prototype: Object, propertyKey: string, property: PropertyDescriptor) {
+function InstanceMethodDecorator(prototype: Object, propertyKey: string | symbol, property: PropertyDescriptor) {
   
 }
 ```
@@ -115,7 +115,7 @@ Must be applied to either the `get` or `set`, but cannot be applied to both. The
 The target of the decorator will be the constructor function of the class defining the static method.
 
 ```ts
-function StaticAccessorDecorator(constructor: Function, propertyKey: string, property: PropertyDescriptor) {
+function StaticAccessorDecorator(constructor: Function, propertyKey: string | symbol, property: PropertyDescriptor) {
   
 }
 ```
@@ -125,7 +125,7 @@ function StaticAccessorDecorator(constructor: Function, propertyKey: string, pro
 The target of the decorator will be the Object prototype of the method's instance.
 
 ```ts
-function StaticMethodDecorator(prototype: Object, propertyKey: string, property: PropertyDescriptor) {
+function StaticMethodDecorator(prototype: Object, propertyKey: string | symbol, property: PropertyDescriptor) {
   
 }
 ```
@@ -139,7 +139,7 @@ Declared before class properties (fields). The decorator will receive the name o
 The target of the decorator will be the constructor of the class declaring the static property.
 
 ```ts
-function StaticPropertyDecorator(constructor: Function, propertyKey: string) {
+function StaticPropertyDecorator(constructor: Function, propertyKey: string | symbol) {
   // Record metadata about property
 }
 ```
@@ -149,7 +149,7 @@ function StaticPropertyDecorator(constructor: Function, propertyKey: string) {
 The target of the decorator will be the prototype of the Object declaring the property.
 
 ```ts
-function InstancePropertyDecorator(prototype: Object, propertyKey: string) {
+function InstancePropertyDecorator(prototype: Object, propertyKey: string | symbol) {
   // Record metadata about property
 }
 ```
@@ -161,7 +161,43 @@ import 'reflect-metadata';
 
 const PROPERTY_METADATA = Symbol('PropertyName');
 
-function PropertyDecorator(construcorOrPrototype: Function | Object, propertyKey: string) {
+function PropertyDecorator(construcorOrPrototype: Function | Object, propertyKey: string | symbol) {
   Reflect.metadata(PROPERTY_METADATA, propertyKey);
+}
+```
+
+### Parameter Decorators
+
+Parameter decorators, like property decorators, cannot change parameters. Parameter decorators can record metadata about the parameters for use in other decorators.
+
+#### Static Method Parameter Decorators
+
+The target of the decorator will be the constructor of the class declaring the parameter's static method.
+
+```ts
+function StaticParameterDecorator(constructor: Function, methodName: string | symbol, parameterIndex: number) {
+  // Record metadata about parameter
+}
+```
+
+#### Instance Method Parameter Decorators
+
+The target of the decorator will be the constructor of the class declaring the parameter's instance method.
+
+```ts
+function InstanceParameterDecorator(prototype: Object, methodName: string | symbol, parameterIndex: number) {
+  // Record metadata about parameter
+}
+```
+
+#### Recording Parameter Metadata
+
+```ts
+import 'reflect-metadata';
+
+const PARAMETER_METADATA = Symbol('parameter');
+
+function ParameterDecorator(constructorOrPrototype: Object | Function, methodName: string | symbol, parameterIndex: number) {
+  Reflect.defineMetadata(PARAMETER_METADATA, parameterIndex, constructorOrPrototype, methodName);
 }
 ```
