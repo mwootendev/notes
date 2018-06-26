@@ -25,7 +25,7 @@ reference the JSON schema that the document adheres to. The JSON schema can be r
 ```js
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "http://www.example.com/example-schema
+  "$id": "http://www.example.com/example-schema.json
 }
 ```
 
@@ -47,6 +47,8 @@ Individual JSON schema levels can be given a name using the `title` property.
 
 ### Specifying Data Type
 
+#### Basic Data Types
+
 A JSON schema document can specify the data type of a property using the `type` property. The property types are limited
 to the following values:
 
@@ -57,5 +59,22 @@ to the following values:
 * boolean
 * null
 
+The type can either be a single string value from the list above, or an array referencing multiple values.
 The additional properties in the schema will depend on the data type specified.
 
+```js
+{
+  "type": "string"
+}
+```
+
+#### Enumeration Data Types
+
+A JSON schema document can specify a property to have an enumerable value using the `enum` property. An enumeration is an
+array of possible values for the field, which may include `null`. The field is required to have one of the values specified in the array.
+
+```js
+{
+  "enum": [ "red", "green", "blue", null]
+}
+```
