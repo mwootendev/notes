@@ -111,6 +111,10 @@ Additionally, a TypeScript `.d.ts` definition file can be used to specify the op
 
 The `dtsgenerator` package can be used to automatically generated the `.d.ts` file from the `schema.json` file.
 
+```sh
+dtsgen path/to/schema.json -o path/to/schema.d.ts
+```
+
  ### Rule
 
  A schematic Rule is a Function that accepts the project Tree and a schematic context, applies some transformations on the Tree, and returns the updated Tree.
@@ -134,7 +138,17 @@ All operations are performed on the Tree.
 
 `Tree.create(filename, content)` provides a means to create a new file and specify its content.
 
+### Load Template Local Files
+
+The `url()` utility is used to reference local files included with the template. For instance, for local files included with the template in a `files` directory, the following could be used to get a refernce to the files.
+
+```typescript
+const localFiles = url('./files');
+```
+
 ### Using Templates
+
+Templates can have variables replaced using the `template()` function.
 
 #### Template Naming
 
@@ -142,11 +156,56 @@ Template names can include variables prefixed with a __ (double underscore). Exa
 
 Template names can also use functions applied to names to convert parts of the filename. For instance `thing-__name__@dasherize__.json` would result in a kebab-case version of the name.
 
+The schematics library includes built in functions, which convert a string to another format.
+
+* classify - converts strings to UpperCamelCase format used for class names.
+* camelize - converts string to lowerCamelCase format for variable or parameter names.
+* dasherize - converts strings to dash-separated format for file names.
+* underscore - converts strings to snake_case format.
+
+Additional functions can be supplied as an additional parameter to the `template()` function.
+
+```typescript
+template({
+  varName: 'value',
+  transformFunction
+})
+```
+
 #### Template Variables
 
 Schematics variables can be substituted using the `<%= %>` syntax. Example: `<%=name %>` would replace the variable with the option value of the name.
 
 Functions can also be used inside `<%= %>` to transform the variables. `my-<%=classify(name) %>` would convert the name to a class delcaration format, for instance.
+
+#### Advanced Template Logic
+
+Templates support use of JavaScript statements like `if` or `for` within `<% %>` blocks. 
+
+```
+<% if (condition) { %>
+  conditional code
+<% } else { %>
+  alternate condition
+<% } %>
+```
+
+### Common Schematic Functions
+
+#### normalize()
+
+#### chain()
+
+#### branchAndMerge()
+
+#### mergeWith()
+
+#### apply()
+
+```typescript
+apply (source: Source, rules: Rule[]): Source;
+```
+
 
 ## Building
 
@@ -178,8 +237,13 @@ Schematics run in the local directory will be run in dry-run mode. This can be d
 
 ## Testing
 
+### SchematicTestRunner
+
+### UnitTestTree
+
 ## Links
 
 * [@angular-devkit/schematics NPM Page](https://www.npmjs.com/package/@angular-devkit/schematics)
 * [@angular-devkit/schematics Git Repository](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/schematics)
 * [Angular Blog Schematics Introduction](https://blog.angular.io/schematics-an-introduction-dc1dfbc2a2b2)
+* [Total Guide to Custom Angular Schematics](https://medium.com/@tomastrajan/total-guide-to-custom-angular-schematics-5c50cf90cdb4)
