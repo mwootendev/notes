@@ -247,3 +247,189 @@ Schematics run in the local directory will be run in dry-run mode. This can be d
 * [@angular-devkit/schematics Git Repository](https://github.com/angular/angular-cli/tree/master/packages/angular_devkit/schematics)
 * [Angular Blog Schematics Introduction](https://blog.angular.io/schematics-an-introduction-dc1dfbc2a2b2)
 * [Total Guide to Custom Angular Schematics](https://medium.com/@tomastrajan/total-guide-to-custom-angular-schematics-5c50cf90cdb4)
+
+## Schematics Projects
+
+### [ObjectivityLtd/angular-schemetics](https://github.com/ObjectivityLtd/angular-schematics)
+
+Project includes sandbox and sandbox workspace examples.
+
+* IDE configuration (VS Code)
+  - Extensions
+  - Launch
+  - Settings
+* Azure Application Insights
+* UI Framework (Material or Bootstrap)
+* CI
+  - Azure Pipelines
+  - Karma Headless
+  - [Updates Karma configuration](https://github.com/ObjectivityLtd/angular-schematics/blob/master/packages/web-ci/src/karma/index.ts) 
+* Web Setup
+  - Core Modules
+  - SCSS
+  - Update TSConfig
+
+#### @objectivity/angular-schematic-ide
+
+Extensions:
+
+```json
+{
+  "mikael.angular-beastcode",
+  "infinity1207.angular2-switcher",
+  "steoates.autoimport",
+  "formulahendry.auto-rename-tag",
+  "coenraads.bracket-pair-colorizer",
+  "msjsdiag.debugger-for-chrome",
+  "editorconfig.editorconfig",
+  "glen-84.sass-lint",
+  "miclo.sort-typescript-imports",
+  "vscode-icons-team.vscode-icons",
+  "Angular.ng-template",
+  "streetsidesoftware.code-spell-checker"
+}
+```
+
+Launch:
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [<% for (let project of projects) {%>
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "ng serve (<%= project.name %>)",
+            "url": "<%= project.serveProtocol %>://<%= project.serveDomain %>:<%= project.servePort %>",
+            "webRoot": "<%= project.webRoot %>"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "ng test (<%= project.name %>)",
+            "url": "<%= project.testProtocol %>://<%= project.testDomain %>:<%= project.testPort %>/debug.html",
+            "webRoot": "<%= project.webRoot %>"
+        },<% } %>
+    ]
+}
+```
+
+Settings:
+
+```json
+{
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "editor.formatOnSave": true
+}
+```
+
+### [slupekdev/vscode](https://github.com/slupekdev/vscode)
+
+Extensions:
+
+```json
+ [
+		"mikael.angular-beastcode",
+		"infinity1207.angular2-switcher",
+		"steoates.autoimport",
+		"formulahendry.auto-rename-tag",
+		"coenraads.bracket-pair-colorizer",
+		"msjsdiag.debugger-for-chrome",
+		"editorconfig.editorconfig",
+		"glen-84.sass-lint",
+		"miclo.sort-typescript-imports",
+		"ms-vscode.vscode-typescript-tslint-plugin",
+		"vscode-icons-team.vscode-icons",
+		"Angular.ng-template"
+	]
+```
+
+Launch: 
+
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "chrome",
+          "request": "launch",
+          "name": "ng serve",
+          "url": "http://localhost:4200/#",
+          "webRoot": "${workspaceFolder}"
+      },
+      {
+          "type": "chrome",
+          "request": "launch",
+          "name": "ng test",
+          "url": "http://localhost:9876/debug.html",
+          "webRoot": "${workspaceFolder}"
+      }
+  ]
+}
+```
+
+### [thisissoon/schematics](https://github.com/thisissoon/schematics)
+
+* Testing / CI
+  - Travis
+  - GitLab
+  - CircleCI
+  - Updates Karma and Protractor config
+* Angular Universal
+* Docker
+  - NginX
+* License
+  - MIT License
+* Linting
+  - Husky
+  - Lint Staged
+  - Prettier
+  - Stylelint
+  - EditorConfig
+  - Updates TSLint rules
+* Commit
+  - Commitizen
+  - Standard Version
+
+### [d-koppenhagen/ngx-semantic-version](https://github.com/d-koppenhagen/ngx-semantic-version)
+
+* CommitLint
+* Commitizen
+* Husky
+* Standard Version
+
+### [co-IT/schematics](https://github.com/co-IT/schematics)
+
+Utility classes for 
+* Package JSON
+* Angular JSON
+* Rules
+
+* CommitLint
+* Cypress
+* Jest
+* Husky
+* Prettier
+  - Prettier RC
+  - Husky Hook
+  - Lint Staged Hook
+* Testing
+  - 
+* TS Config  
+
+### [@martin_hotell/schematics](https://github.com/Hotell/ng-cli-schematics)
+
+* Jest
+
+### [schuchard/prettier-schematic](https://github.com/schuchard/prettier-schematic)
+
+Includes a sandbox
+
+* Prettier
+  - Prettier Config (JS)
+  - pretterignore
+* Husky
+* Lint Staged
+* TSLint
