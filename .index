@@ -13,7 +13,7 @@ custom-events.md
 es6-generators.md
 es6-iterators.md
 flexbox.md
-html-imports.md
+
 html-slots.md
 html-templates.md
 json-ld.md
@@ -23,3 +23,4 @@ rdfa.md
 reflect-metadata.md
 shadom-dom.md
 typescript-decorators.md
+html
